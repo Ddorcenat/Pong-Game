@@ -31,7 +31,7 @@ def reset_ball():
     global ball_x, ball_y, ball_vel_x, ball_vel_y, left_paddle_y, right_paddle_y
     ball_x, ball_y = WIDTH / 2, HEIGHT / 2
     angle = random.uniform(-math.pi / 4, math.pi / 4)  # Random angle between -45 and 45 degrees
-    speed = 1.0  # Constant speed
+    speed = 0.5  # Constant speed
     ball_vel_x = speed * math.cos(angle) * (1 if random.choice([True, False]) else -1)
     ball_vel_y = speed * math.sin(angle)
     
@@ -48,13 +48,13 @@ while function:
             function = False 
         elif i.type == pygame.KEYDOWN:
             if i.key == pygame.K_UP:
-                right_paddle_vel = -0.9 
+                right_paddle_vel = -0.5 
             if i.key == pygame.K_DOWN:
-                right_paddle_vel = 0.9
+                right_paddle_vel = 0.5
             if i.key == pygame.K_w:
-                left_paddle_vel = -0.9
+                left_paddle_vel = -0.5
             if i.key == pygame.K_s:
-                left_paddle_vel = 0.9
+                left_paddle_vel = 0.5
         if i.type == pygame.KEYUP:
             right_paddle_vel = 0
             left_paddle_vel = 0
