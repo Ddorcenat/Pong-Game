@@ -8,6 +8,9 @@ WIDTH, HEIGHT = 1000, 600
 wn = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("DPong_Table")
 
+background = pygame.image.load("IMG_3773.JPG")
+background = pygame.transform.scale(background, (WIDTH, HEIGHT)) 
+
 # Paddle dimensions
 paddle_width, paddle_height = 20, 120
 left_paddle_x = 100 - paddle_width / 2
@@ -21,10 +24,11 @@ radius = 15
 ball_x, ball_y = WIDTH / 2, HEIGHT / 2
 ball_vel_x, ball_vel_y = 0.7, 0.7
 
-# Colors
+
 RED = (255, 0, 0)
 YELLOW = (0, 0, 255)
 BLACK = (0, 0, 0)
+
 
 # Reset ball and paddle positions
 def reset_ball():
@@ -42,7 +46,8 @@ def reset_ball():
 # Game loop
 function = True
 while function:
-    wn.fill(BLACK)
+    #wn.fill(BLACK)
+    wn.blit(background, (0, 0)) 
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
             function = False 
@@ -88,9 +93,8 @@ while function:
     ball_x += ball_vel_x
     ball_y += ball_vel_y
 
-    # Drawing objects
     pygame.draw.circle(wn, YELLOW, (int(ball_x), int(ball_y)), radius)
     pygame.draw.rect(wn, RED, pygame.Rect(left_paddle_x, left_paddle_y, paddle_width, paddle_height))
     pygame.draw.rect(wn, RED, pygame.Rect(right_paddle_x, right_paddle_y, paddle_width, paddle_height))
-
+    
     pygame.display.update()
